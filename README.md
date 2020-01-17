@@ -27,20 +27,20 @@ Test account:
 3. User written fonts
 
 ## Main Model
-![image-20200117113334666](/Users/zhaowanru/Library/Application Support/typora-user-images/image-20200117113334666.png)
+![image-20200117113334666](https://tva1.sinaimg.cn/large/006tNbRwly1gazjmoim9gj30xq0jiwj2.jpg)
 
 ## Deployment
 
-![image-20200117113420101](/Users/zhaowanru/Library/Application Support/typora-user-images/image-20200117113420101.png)
+![image-20200117113420101](https://tva1.sinaimg.cn/large/006tNbRwly1gazjnvox0xj31mc0pok0j.jpg)
 
 ## User Interface
-![4.2初始用户登录界面](/Users/zhaowanru/class/DBMS/[申优]数据库课程设计_“文墨”字体分享平台_17373240赵婉如_17373124闫苗/效果截图/4.2初始用户登录界面.png)
+![4.2初始用户登录界面](https://tva1.sinaimg.cn/large/006tNbRwly1gazjobaud5j31c00u0qd6.jpg)
 
-![4.4添加评论52.17 AM](/Users/zhaowanru/class/DBMS/[申优]数据库课程设计_“文墨”字体分享平台_17373240赵婉如_17373124闫苗/效果截图/4.4添加评论52.17 AM.png)
+![4.4添加评论52.17 AM]https://tva1.sinaimg.cn/large/006tNbRwly1gazjoo7f1jj31c00u0777.jpg)
 
 
 
-![image-20200117113628652](/Users/zhaowanru/Library/Application Support/typora-user-images/image-20200117113628652.png)
+![image-20200117113628652](https://tva1.sinaimg.cn/large/006tNbRwly1gazjozy3eoj30wy0i6gnj.jpg)
 
 ## Examples
 
