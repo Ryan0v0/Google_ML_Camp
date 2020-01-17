@@ -1,0 +1,72 @@
+{% extends 'admin/index.html' %}
+{% from 'bootstrap/pagination.html' import render_pagination %}
+
+{% block title %}Manage Comments{% endblock %}
+
+{% block content %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            {{ render_breadcrumb_item('admin.index', '首页') }}
+            {{ render_breadcrumb_item('admin.manage_comment', '管理评论') }}
+        </ol>
+    </nav>
+    <div class="page-header">
+        <h1>评论
+            <small class="text-muted">{{ pagination.total }}</small>
+            <span class="dropdown">
+            <button class="btn btn-secondary btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                排序： {{ order_rule }} <span class="oi oi-elevator"></span>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                {% if order_rule == 'flag' %}
+                    <a class="dropdown-item" href="{{ url_for('.manage_comment', order='by_time') }}">以时间排序
+                    </a>
+                {% else %}
+                    <a class="dropdown-item" href="{{ url_for('.manage_comment', order='by_flag') }}">以标记排序
+                    </a>
+                {% endif %}
+            </div>
+        </span>
+        </h1>
+    </div>
+    {% if comments %}
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>内容</th>
+                <th>发布者</th>
+                <th>汉字图片</th>
+                <th>是否举报</th>
+                <th>时间</th>
+                <th>活动</th>
+            </tr>
+            </thead>
+            {% for comment in comments %}
+                <tr>
+                    <td>{{ comment.body }}</td>
+                    <td>
+                        <a href="{{ url_for('user.index', username=comment.author.username) }}">{{ comment.author.name }}</a>
+                    </td>
+                    <td>
+                        <a href="{{ url_for('main.show_photo', photo_id=comment.photo.id) }}">汉字 {{ comment.photo.id }}</a>
+                    </td>
+                    <td>{{ comment.flag }}</td>
+                    <td>{{ moment(comment.timestamp).format('LL') }}</td>
+                    <td>
+                        <form class="inline" method="post"
+                              action="{{ url_for('main.delete_comment', comment_id=comment.id, next=request.full_path) }}">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                            <button type="submit" class="btn btn-danger btn-sm"
+                                    onclick="return confirm('确定?');">删除
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        <div class="page-footer">{{ render_pagination(pagination) }}</div>
+    {% else %}
+        <div class="tip"><h5>无评论</h5></div>
+    {% endif %}
+{% endblock %}

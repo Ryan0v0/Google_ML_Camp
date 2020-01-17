@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% from 'bootstrap/pagination.html' import render_pagination %}
+{% from 'macros.html' import photo_card, user_card with context %}
+
+{% block content %}
+    	<style type = "text/css">
+		.textbody{
+			text-align: center;
+			width: 80%;
+			font-weight: bold;
+			font-size: 18px;
+			margin: 10px auto 0px;
+		}
+		.outputbody{
+            text-align: center;
+			width: 80%;
+			border:1px solid;
+			border-color: #C8C8C8;
+			margin: 10px auto 0px;
+			font-size: 20px;
+			height: auto;
+		}
+        #submitbutton {
+			text-align: center;
+			width: 15%;
+			font-size: 25px;
+			margin: 10px auto 0px;
+		}
+		#inputtextarea{
+			width: 80%;
+			height: 200px;
+			background-color: rgba(245,245,245,0.50);
+			font-size: 20px;
+			margin: 10px auto 0px;
+			padding : 20px;
+		}
+	</style>
+    <div class="jumbotron">
+        <h2>
+            请输入你想转换的汉字
+        </h2>
+        <p></p>
+        <form class="textbody" action="{{ url_for('main.produce') }}" method="post">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+            <div>
+                <textarea name="a" id="inputtextarea">{{ inputtext }}</textarea>
+            </div>
+
+    <!--
+            <div class="form-group">
+                <label for="exampleInputFile">
+                    File input
+                </label>
+                <input type="file" class="form-control-file" id="exampleInputFile"/>
+                <p class="help-block">
+                    Example block-level help text here.
+                </p>
+            </div>
+      !-->
+
+            <p></p>
+            <select name="b">
+                <option value="wxz">王羲之书法</option>
+                <option value="zzy">Mc2个人字体</option>
+                <option value="zwr">庞中华行书</option>
+                <option value="yxr">趙婉如个人字体</option>
+            </select>
+            <div>
+		        <input type="submit" id="submitbutton" value="提交">
+		    </div>
+
+        </form>
+        <h2>
+            生成结果
+        </h2>
+        <div class="outputbody">
+            <img src="{{ url_for('static', filename='images/'+ inputtext +'.png') }}" alt="name">
+        </div>
+    </div>
+{% endblock %}

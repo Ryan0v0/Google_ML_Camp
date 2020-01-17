@@ -1,0 +1,27 @@
+{% extends 'admin/index.html' %}
+{% from 'bootstrap/form.html' import render_form %}
+{% from 'bootstrap/nav.html' import render_breadcrumb_item %}
+
+{% block title %}修改档案{% endblock %}
+
+{% block content %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            {{ render_breadcrumb_item('admin.index', '主控页面') }}
+            {{ render_breadcrumb_item('admin.manage_user', '管理用户') }}
+            {{ render_breadcrumb_item('admin.edit_profile_admin', '修改档案') }}
+        </ol>
+    </nav>
+    <div class="page-header">
+        <h1>修改档案
+            <a class="float-right btn btn-light" href="{{ url_for('user.index', username=user.username) }}">返回
+                {{ user.username }}的个人用户</a>
+        </h1>
+    </div>
+    <div class="card w-100 bg-light">
+        <h3 class="card-header">修改档案</h3>
+        <div class="card-body">
+            {{ render_form(form) }}
+        </div>
+    </div>
+{% endblock %}
