@@ -36,7 +36,7 @@ Test account:
 ## User Interface
 ![4.2初始用户登录界面](https://tva1.sinaimg.cn/large/006tNbRwly1gazjobaud5j31c00u0qd6.jpg)
 
-![4.4添加评论52.17 AM]https://tva1.sinaimg.cn/large/006tNbRwly1gazjoo7f1jj31c00u0777.jpg)
+![4.4添加评论52.17 AM]（https://tva1.sinaimg.cn/large/006tNbRwly1gazjoo7f1jj31c00u0777.jpg)
 
 
 
@@ -46,14 +46,13 @@ Test account:
 
 庞中华行书：
 ![评委真帅](https://github.com/Ryan0v0/Google_ML_Camp/blob/master/ICalligraph/static/images/评委真帅.png)
-
+![一叶孤舟](https://tva1.sinaimg.cn/large/006tNbRwly1gazjsk9raqj30740sgq4n.jpg)
 王羲之书法：（dataset from《兰亭集序》）
 ![大道不器](https://github.com/Ryan0v0/Google_ML_Camp/blob/master/ICalligraph/static/images/大道不器.png)
 
 用户个人手写体：
 
-![谷歌机器学习]
-(https://github.com/Ryan0v0/Google_ML_Camp/blob/master/ICalligraph/static/images/谷歌机器学习.png)
+![谷歌机器学习](https://github.com/Ryan0v0/Google_ML_Camp/blob/master/ICalligraph/static/images/谷歌机器学习.png)
 
 
 ![冬令营](/Users/zhaowanru/class/google/ICalligraph/ICalligraph/static/images/冬令营.png)
