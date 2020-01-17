@@ -52,7 +52,9 @@ Test account:
 
 用户个人手写体：
 
-![谷歌机器学习](/Users/zhaowanru/class/google/ICalligraph/ICalligraph/static/images/谷歌机器学习.png)
+![谷歌机器学习]
+(https://github.com/Ryan0v0/Google_ML_Camp/blob/master/ICalligraph/static/images/谷歌机器学习.png)
+
 
 ![冬令营](/Users/zhaowanru/class/google/ICalligraph/ICalligraph/static/images/冬令营.png)
 
