@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% from 'bootstrap/nav.html' import render_breadcrumb_item %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block navbar %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('admin.index') }}">
+                <img src="{{ url_for('static', filename='favicon.ico') }}" alt="Photos"> 汉字主页
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
+                    aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <div class="navbar-nav ml-auto">
+                    {{ render_nav_item('main.index', '回到主页') }}
+                    <div class="dropdown nav-item">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-expanded="false">管理<span class="caret"></span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" role="menu">
+                            <a class="dropdown-item" href="{{ url_for('admin.manage_photo') }}">汉字</a>
+                            <a class="dropdown-item" href="{{ url_for('admin.manage_user') }}">用户</a>
+                            <a class="dropdown-item" href="{{ url_for('admin.manage_tag') }}">标签</a>
+                            <a class="dropdown-item" href="{{ url_for('admin.manage_comment') }}">评论</a>
+                        </div>
+                    </div>
+                    <div class="dropdown nav-item">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-expanded="false">
+                            <img class="avatar-xs"
+                                 src="{{ url_for('main.get_avatar', filename=current_user.avatar_s) }}">
+                            <span class="caret"></span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" role="menu">
+                            <h6 class="dropdown-header">登录 {{ current_user.username }}</h6>
+                            <a class="dropdown-item" href="{{ url_for('user.index', username=current_user.username) }}">
+                                <span class="oi oi-person"></span> 我的主页
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{ url_for('user.edit_profile') }}">
+                                <span class="oi oi-cog"></span> 设置
+                            </a>
+                            <a class="dropdown-item" href="{{ url_for('auth.logout') }}">
+                                <span class="oi oi-power-standby"></span> 登出
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+{% endblock %}
+
+{% block content %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            {{ render_breadcrumb_item('admin.index', '首页') }}
+        </ol>
+    </nav>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card border-primary mb-3">
+                <div class="card-header"><span class="oi oi-image"></span> 汉字</div>
+                <div class="card-body">
+                    <h4 class="card-title">总数: {{ photo_count|default('0') }}</h4>
+                    <p class="card-text">举报: {{ reported_photo_count|default('0') }}</p>
+                    <a class="btn btn-primary text-white" href="{{ url_for('.manage_photo') }}">管理</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card border-secondary mb-3">
+                <div class="card-header"><span class="oi oi-people"></span> 用户</div>
+                <div class="card-body">
+                    <h4 class="card-title">总数: {{ user_count|default('0') }}</h4>
+                    <p class="card-text">冻结: {{ locked_user_count|default('0') }}
+                        黑名单: {{ blocked_user_count|default('0') }}</p>
+                    <a class="btn btn-primary text-white" href="{{ url_for('.manage_user') }}">管理</a>
+                    <a class="btn btn-secondary text-white" href="{{ url_for('.manage_user', filter='locked') }}">查看冻结账户
+                        </a>
+                    <a class="btn btn-secondary text-white" href="{{ url_for('.manage_user', filter='blocked') }}">查看黑名单账户
+                        </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card border-danger mb-3">
+                <div class="card-header"><span class="oi oi-comment-square"></span> 评论</div>
+                <div class="card-body">
+                    <h4 class="card-title">总数: {{ comment_count|default('0') }}</h4>
+                    <p class="card-text">举报: {{ reported_comments_count|default('0') }}</p>
+                    <a class="btn btn-primary text-white" href="{{ url_for('.manage_comment') }}">管理</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card border-success mb-3">
+                <div class="card-header"><span class="oi oi-tag"></span> 标签</div>
+                <div class="card-body">
+                    <h4 class="card-title">总数: {{ tag_count|default('0') }}</h4>
+                    <p class="card-text">&nbsp;</p>
+                    <a class="btn btn-primary text-white" href="{{ url_for('.manage_tag') }}">管理</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

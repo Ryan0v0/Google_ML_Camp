@@ -1,0 +1,90 @@
+{% extends 'admin/index.html' %}
+{% from 'bootstrap/pagination.html' import render_pagination %}
+
+{% block title %}Manage Photos{% endblock %}
+
+{% block content %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            {{ render_breadcrumb_item('admin.index', '首页') }}
+            {{ render_breadcrumb_item('admin.manage_photo', '管理汉字') }}
+        </ol>
+    </nav>
+    <div class="page-header">
+        <h1>汉字
+            <small class="text-muted">{{ pagination.total }}</small>
+            <span class="dropdown">
+            <button class="btn btn-secondary btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                排序： {{ order_rule }} <span class="oi oi-elevator"></span>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                {% if order_rule == 'flag' %}
+                    <a class="dropdown-item" href="{{ url_for('.manage_photo', order='by_time') }}">以时间排序
+                    </a>
+                {% else %}
+                    <a class="dropdown-item" href="{{ url_for('.manage_photo', order='by_flag') }}">以标签排序
+                    </a>
+                {% endif %}
+            </div>
+        </span>
+        </h1>
+    </div>
+    {% if photos %}
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>图像</th>
+                <th>描述</th>
+                <th>标签</th>
+                <th>发布者</th>
+                <th>是否举报</th>
+                <th>时间</th>
+                <th>活动</th>
+            </tr>
+            </thead>
+            {% for photo in photos %}
+                <tr>
+                    <td>
+                        <a href="{{ url_for('main.show_photo', photo_id=photo.id) }}">
+                            <img src="{{ url_for('main.get_image', filename=photo.filename_s) }}" width="250">
+                        </a>
+                    </td>
+                    <td>{{ photo.description }}</td>
+                    <td>
+                        {% if photo.tags %}
+                            {% for tag in photo.tags %}
+                                <form class="inline" method="post"
+                                      action="{{ url_for('admin.delete_tag', tag_id=tag.id, next=request.full_path) }}">
+                                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                                    <button type="submit" class="btn badge badge-danger mb-1"
+                                            onclick="return confirm('确定?');">
+                                        {{ tag.name }} <span class="oi oi-trash" aria-hidden="true">
+                                </span>
+                                    </button>
+                                </form>
+                            {% endfor %}
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{{ url_for('user.index', username=photo.author.username) }}">{{ photo.author.name }}</a>
+                    </td>
+                    <td>{{ photo.flag }}</td>
+                    <td>{{ moment(photo.timestamp).format('LL') }}</td>
+                    <td>
+                        <form class="inline" method="post"
+                              action="{{ url_for('main.delete_photo', photo_id=photo.id, next=request.full_path) }}">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                            <button type="submit" class="btn btn-danger btn-sm"
+                                    onclick="return confirm('确定?');">删除
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        <div class="page-footer">{{ render_pagination(pagination) }}</div>
+    {% else %}
+        <div class="tip"><h5>无汉字图片</h5></div>
+    {% endif %}
+{% endblock %}
