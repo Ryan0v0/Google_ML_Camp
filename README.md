@@ -48,7 +48,7 @@ Test account:
 ![一叶孤舟](/Users/zhaowanru/class/google/ICalligraph/ICalligraph/static/images/一叶孤舟.png)
 
 王羲之书法：（dataset from《兰亭集序》）
-![大道不器](/Users/zhaowanru/class/google/ICalligraph/ICalligraph/static/images/大道不器.png)
+![大道不器](https://github.com/Ryan0v0/Google_ML_Camp/blob/master/ICalligraph/static/images/大道不器.png)
 
 用户个人手写体：
 
