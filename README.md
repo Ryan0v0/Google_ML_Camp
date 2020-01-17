@@ -36,7 +36,7 @@ Test account:
 ## User Interface
 ![4.2初始用户登录界面](https://tva1.sinaimg.cn/large/006tNbRwly1gazjobaud5j31c00u0qd6.jpg)
 
-![4.4添加评论52.17 AM]（https://tva1.sinaimg.cn/large/006tNbRwly1gazjoo7f1jj31c00u0777.jpg)
+![4.4添加评论52.17 AM](https://tva1.sinaimg.cn/large/006tNbRwly1gazjoo7f1jj31c00u0777.jpg)
 
 
 
